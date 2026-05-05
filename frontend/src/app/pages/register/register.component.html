@@ -1,0 +1,52 @@
+<main class="auth-page">
+  <section class="auth-panel" aria-labelledby="register-title">
+    <h1 id="register-title">Cadastro</h1>
+    <p>Crie uma conta com uma senha forte.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submit()" novalidate>
+      <div class="field">
+        <label for="name">Nome</label>
+        <input id="name" type="text" autocomplete="name" formControlName="name">
+        <small *ngIf="registerForm.controls.name.touched && registerForm.controls.name.invalid">
+          Informe seu nome.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" autocomplete="email" formControlName="email">
+        <small *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+          Informe um e-mail valido.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="password">Senha</label>
+        <input id="password" type="password" autocomplete="new-password" formControlName="password">
+        <small *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+          Use 8+ caracteres com maiuscula, minuscula e numero.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirmar senha</label>
+        <input id="confirmPassword" type="password" autocomplete="new-password" formControlName="confirmPassword">
+        <small *ngIf="registerForm.touched && registerForm.hasError('passwordMismatch')">
+          As senhas precisam ser iguais.
+        </small>
+      </div>
+
+      <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button class="primary-button" type="submit" [disabled]="loading">
+        {{ loading ? 'Criando...' : 'Criar conta' }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      Ja tem conta?
+      <a routerLink="/login">Entrar</a>
+    </p>
+  </section>
+</main>
+

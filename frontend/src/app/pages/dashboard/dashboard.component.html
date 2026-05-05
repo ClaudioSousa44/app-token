@@ -1,0 +1,38 @@
+<main class="dashboard-shell" *ngIf="user$ | async as user">
+  <header class="dashboard-header">
+    <div>
+      <strong>App Token</strong>
+      <p>Area protegida por guard e JWT.</p>
+    </div>
+
+    <button class="secondary-button" type="button" (click)="logout()">Sair</button>
+  </header>
+
+  <section class="dashboard-main">
+    <h1>Bem-vindo, {{ user.name }}</h1>
+    <p>Esta tela so abre depois que o guard valida uma sessao ativa.</p>
+
+    <div class="dashboard-grid">
+      <article class="info-card">
+        <span>E-mail</span>
+        <strong>{{ user.email }}</strong>
+      </article>
+
+      <article class="info-card">
+        <span>ID do usuario</span>
+        <strong>{{ user.id }}</strong>
+      </article>
+
+      <article class="info-card">
+        <span>Cadastro criado em</span>
+        <strong>{{ user.createdAt | date:'dd/MM/yyyy HH:mm' }}</strong>
+      </article>
+
+      <article class="info-card">
+        <span>Protecao</span>
+        <strong>Access token curto e refresh token httpOnly</strong>
+      </article>
+    </div>
+  </section>
+</main>
+
